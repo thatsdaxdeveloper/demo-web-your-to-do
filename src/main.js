@@ -5,9 +5,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const todoList = document.querySelector("#todo-list");
     const todoInput = document.querySelector("#todo-input");
     const todoButton = document.querySelector("#todo-button");
+    const remainingTodos = document.querySelector("#remaining-todos");
 
     let todoItems = JSON.parse(localStorage.getItem("todoItems")) || [];
     todoItems.forEach((todoItem) => renderTodoItems(todoItem));
+
+    updateTaskCount(todoItems);
 
     todoButton.addEventListener("click", () => {
         const todoText = todoInput.value.trim();
@@ -22,10 +25,14 @@ document.addEventListener("DOMContentLoaded", () => {
         todoItems.push(newTodo);
         saveTodo();
         renderTodoItems(newTodo);
-
+        updateTaskCount(todoItems);
         todoInput.value = "";
         console.log(todoItems);
     });
+
+    function updateTaskCount(tasks) {
+        remainingTodos.textContent = `Your remaining todos: ${todoItems.filter((t) => t.isCompleted === false).length}`;
+    }
 
     function renderTodoItems(todo) {
         const todoItem = document.createElement("li");
@@ -48,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
         checkbox.addEventListener("change", () => {
             todo.isCompleted = !todo.isCompleted;
             todoItem.querySelector("input").classList.toggle("peer");
+            updateTaskCount(todoItems);
             saveTodo();
         });
 
@@ -57,6 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
             event.target.closest("li").remove();
 
             todoItems = todoItems.filter((t) => t.id !== todo.id);
+            updateTaskCount(todoItems);
             saveTodo();
         });
 
