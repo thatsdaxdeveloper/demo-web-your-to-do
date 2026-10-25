@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const todoItem = document.createElement("li");
 
         todoItem.dataset.id = todo.id;
-        todoItem.classList.add("flex", "items-center", "mb-4", "justify-between", "border-2", "border-gray-400", "rounded-xl", "p-4");
+        todoItem.classList.add("flex", "items-center", "mb-4", "justify-between", "border-2", "border-gray-400", "rounded-xl", "lg:p-4", "p-2");
 
         console.log(todo.text);
 
