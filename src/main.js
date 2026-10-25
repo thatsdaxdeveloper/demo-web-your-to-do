@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function renderTodoItems(todo) {
         const todoItem = document.createElement("li");
         todoItem.dataset.id = todo.id;
-        todoItem.classList.add("flex", "items-center", "mb-4", "justify-between", "border-2", "border-gray-400", "rounded-md", "lg:rounded-xl", "p-2", "lg:p-4");
+        todoItem.classList.add("flex", "items-center", "mb-4", "justify-between", "border-2", "border-gray-400", "rounded-xl", "p-4");
 
         todoItem.innerHTML = `
             <div class="flex items-center">
